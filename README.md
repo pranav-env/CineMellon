@@ -2,7 +2,7 @@
 
 A movie and TV show exploration platform with AI-generated editorial content — trivia, timelines, hidden details, character analysis, and more — plus a live trending-discussions feed and personal favourites.
 
-**Live:** [CineMellon](https://cinemellon-pink.vercel.app/)
+**[Live:](https://cinemellon-arsonists.vercel.app/)** https://cinemellon-arsonists.vercel.app/
 
 ## Stack
 
