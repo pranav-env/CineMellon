@@ -1,0 +1,17 @@
+/* Text "shine sweep" — a moving specular highlight across the title, same
+   brand palette as SpecularButton's WebGL shine but done in plain CSS.
+   Not WebGL: a results grid can have 20+ cards on screen at once, well
+   past what browsers allow in simultaneous WebGL contexts. */
+.title-specular {
+  background-image: linear-gradient(100deg, #ffffff 30%, #ff8e72 45%, #ff6b6b 50%, #ff8e72 55%, #ffffff 70%);
+  background-size: 250% 100%;
+  background-position: 200% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transition: background-position 0.9s ease;
+}
+
+.group:hover .title-specular {
+  background-position: -50% 0;
+}

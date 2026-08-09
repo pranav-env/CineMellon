@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Single dark palette — CSS-variable-driven (rather than plain hex)
+     purely so opacity modifiers like bg-coral/10 keep working via
+     Tailwind's rgb(var(...) / <alpha-value>) pattern in
+     tailwind.config.js, not because there's a second theme to switch to. */
+  --color-ink: 11 11 13; /* #0B0B0D */
+  --color-surface: 18 18 18; /* #121212 */
+  --color-surface-raised: 25 25 25; /* #191919 */
+  --color-surface-line: 42 42 42; /* #2A2A2A */
+  --color-coral: 255 107 107; /* #FF6B6B */
+  --color-clay: 255 142 114; /* #FF8E72 */
+  --color-bone: 255 255 255; /* #FFFFFF */
+  --color-muted: 166 166 170; /* #A6A6AA */
+  --color-faint: 110 110 115; /* #6E6E73 */
+
+  /* Legacy aliases some of the base rules below already used before the
+     token system existed — kept as plain hex so they don't need touching. */
+  --color-primary: #121212;
+  --color-secondary: #ff6b6b;
+  --color-tertiary: #ff8e72;
+  --color-neutral: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: rgb(var(--color-surface));
+  color: rgb(var(--color-bone));
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+::selection {
+  background: rgb(var(--color-coral));
+  color: rgb(var(--color-ink));
+}
+
+/* Visible keyboard focus, kept everywhere */
+:focus-visible {
+  outline: 2px solid rgb(var(--color-clay));
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Buttons pop slightly on hover so it's always clear what's interactive,
+   and get a quick press-down + ring-pulse on click so there's a clear "yes,
+   that registered" moment — especially useful for actions that don't
+   otherwise change anything visible on the current page (Refresh, Load
+   More, toggles). Skipped for disabled buttons, which shouldn't invite
+   interaction. The .click-feedback class is added/removed by a small
+   global listener (see components/ClickFeedback.tsx) so this applies to
+   every button site-wide without needing to touch each one individually. */
+button:not(:disabled):not(.no-hover-pop) {
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+button:not(:disabled):not(.no-hover-pop):hover {
+  transform: scale(1.06);
+}
+
+button:not(:disabled):not(.no-hover-pop):active {
+  transform: scale(0.94);
+  filter: brightness(1.15);
+}
+
+@keyframes click-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.55);
+  }
+  100% {
+    box-shadow: 0 0 0 10px rgba(255, 107, 107, 0);
+  }
+}
+
+button.click-feedback {
+  animation: click-pulse 0.4s ease-out;
+}
+::-webkit-scrollbar-track {
+  background: rgb(var(--color-surface));
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 107, 107, 0.35);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ff6b6b;
+}
+
+/* Firefox */
+* {
+  scrollbar-color: rgba(255, 107, 107, 0.35) rgb(var(--color-surface));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.text-balance {
+  text-wrap: balance;
+}
