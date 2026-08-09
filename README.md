@@ -1,8 +1,8 @@
-# Cinemellon
+# CineMellon
 
 A movie and TV show exploration platform with AI-generated editorial content — trivia, timelines, hidden details, character analysis, and more — plus a live trending-discussions feed and personal favourites.
 
-**Live:** https://cine-mellon-frontend.vercel.app
+**Live:** [CineMellon](https://cinemellon-pink.vercel.app/)
 
 ## Stack
 
